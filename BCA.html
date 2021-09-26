@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind Call Aplly</title>
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div id="output"></div>
+    <script>
+
+        let userOne = {
+            name: "Иван",
+            surname: "Иванов",
+            age: 35,
+            user: function () {
+                console.log(`Привет! Я ${this.name} ${this.surname}`)
+                return { name: this.name, surname: this.surname }
+            }
+        }
+
+        let context = userOne.user();
+        let name = context.name,
+            surname = context.surname;
+
+        let userTwo = {
+            name: "Роман",
+            surname: "Петров",
+            age: 32
+        }
+
+        userTwo.user = userOne.user.bind(userTwo)
+        userTwo.user()
+    </script>
+</body>
+
+</html>
